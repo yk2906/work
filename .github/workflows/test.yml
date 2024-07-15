@@ -9,11 +9,11 @@
 #           FORMAT_FUNC: ${{ format('{0}, {1}.', 'Hi', 'world') }}
 #           JOIN_FUNC: ${{ join(github.event.*.html_url, ', ') }}
 
-name: Status check functions
-on:
-  push:
-    branches:
-      - workflow-test
+# name: Status check functions
+# on:
+#   push:
+#     branches:
+#       - workflow-test
 
 # jobs:
 #   skip-or-run:
@@ -22,11 +22,24 @@ on:
 #       - run: echo "Hello"
 #       if: ${{ contains(github.run_id, '1') }}
 
+# jobs:
+#   fail:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: exit 1
+#       - run: echo "Hello"
+#         if: ${{ failure() }}
+
+name: Run name
+run-name: Run by @${{ github.actor }}
+on:
+  push:
+    branches:
+      - workflow-test
+
 jobs:
-  fail:
+  print:
     runs-on: ubuntu-latest
     steps:
-      - run: exit 1
       - run: echo "Hello"
-        if: ${{ failure() }}
 
