@@ -30,16 +30,27 @@
 #       - run: echo "Hello"
 #         if: ${{ failure() }}
 
-name: Run name
-run-name: Run by @${{ github.actor }}
+# name: Run name
+# run-name: Run by @${{ github.actor }}
+# on:
+#   push:
+#     branches:
+#       - workflow-test
+
+# jobs:
+#   print:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: echo "Hello"
+
+name: Missing share data
 on:
   push:
     branches:
       - workflow-test
-
 jobs:
-  print:
+  share:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello"
-
+      - run: export RESULT="hello"
+      - run: echo "${RESULT}"
