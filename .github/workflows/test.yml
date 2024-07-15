@@ -1,10 +1,23 @@
-name: Generate functions
-on: push
+# name: Generate functions
+# on: push
+# jobs:
+#   generate:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: printenv | grep '_FUNC'
+#         env:
+#           FORMAT_FUNC: ${{ format('{0}, {1}.', 'Hi', 'world') }}
+#           JOIN_FUNC: ${{ join(github.event.*.html_url, ', ') }}
+
+name: Conditions
+on:
+  push:
+    branches:
+      - workflow-test
+
 jobs:
-  generate:
+  skip-or-run:
     runs-on: ubuntu-latest
     steps:
-      - run: printenv | grep '_FUNC'
-        env:
-          FORMAT_FUNC: ${{ format('{0}, {1}.', 'Hi', 'world') }}
-          JOIN_FUNC: ${{ join(github.event.*.html_url, ', ') }}
+      - run: echo "Hello"
+      if: ${{ contains(github.run_id, '1') }}
