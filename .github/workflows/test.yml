@@ -1,10 +1,60 @@
-name: Generate functions
-on: push
+# name: Generate functions
+# on: push
+# jobs:
+#   generate:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: printenv | grep '_FUNC'
+#         env:
+#           FORMAT_FUNC: ${{ format('{0}, {1}.', 'Hi', 'world') }}
+#           JOIN_FUNC: ${{ join(github.event.*.html_url, ', ') }}
+
+# name: Status check functions
+# on:
+#   push:
+#     branches:
+#       - workflow-test
+
+# jobs:
+#   skip-or-run:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: echo "Hello"
+#       if: ${{ contains(github.run_id, '1') }}
+
+# jobs:
+#   fail:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: exit 1
+#       - run: echo "Hello"
+#         if: ${{ failure() }}
+
+# name: Run name
+# run-name: Run by @${{ github.actor }}
+# on:
+#   push:
+#     branches:
+#       - workflow-test
+
+# jobs:
+#   print:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: echo "Hello"
+
+name: Missing share data
+on:
+  push:
+    branches:
+      - workflow-test
+
 jobs:
-  generate:
+  share:
     runs-on: ubuntu-latest
     steps:
-      - run: printenv | grep '_FUNC'
-        env:
-          FORMAT_FUNC: ${{ format('{0}, {1}.', 'Hi', 'world') }}
-          JOIN_FUNC: ${{ join(github.event.*.html_url, ', ') }}
+      - id: source
+        run: echo "result=Hello" >> "${GITHUB_OUTPUT}"
+      - env:
+          RESULT: ${{ steps.source.outputs.result }}
+        run: echo "${RESULT}"
