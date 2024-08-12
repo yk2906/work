@@ -43,18 +43,31 @@
 #     steps:
 #       - run: echo "Hello"
 
-name: Missing share data
-on:
-  push:
-    branches:
-      - workflow-test
+# name: Missing share data
+# on:
+#   push:
+#     branches:
+#       - workflow-test
 
+# jobs:
+#   share:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - id: source
+#         run: echo "result=Hello" >> "${GITHUB_OUTPUT}"
+#       - env:
+#           RESULT: ${{ steps.source.outputs.result }}
+#         run: echo "${RESULT}"
+
+name: Change shell
+on: push
 jobs:
-  share:
+  print:
     runs-on: ubuntu-latest
     steps:
-      - id: source
-        run: echo "result=Hello" >> "${GITHUB_OUTPUT}"
-      - env:
-          RESULT: ${{ steps.source.outputs.result }}
-        run: echo "${RESULT}"
+      - shell: bash
+        run: echo "${SHELL}"
+      - shell: python
+        run: |
+          import os
+          print(os.environ['PATH'])
