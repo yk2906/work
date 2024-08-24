@@ -59,15 +59,36 @@
 #           RESULT: ${{ steps.source.outputs.result }}
 #         run: echo "${RESULT}"
 
-name: Change shell
-on: push
+# name: Change shell
+# on: push
+# jobs:
+#   print:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - shell: bash
+#         run: echo "${SHELL}"
+#       - shell: python
+#         run: |
+#           import os
+#           print(os.environ['PATH'])
+
+name: Environments
+on:
+  workflow_dispatch:
+    inputs:
+      environment-name:
+        type: environment
+        default: test
+        required: false
+        description: Environment name
+
 jobs:
   print:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment-name }}
+    env:
+      USERNAME: ${{ vars.USERNAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
     steps:
-      - shell: bash
-        run: echo "${SHELL}"
-      - shell: python
-        run: |
-          import os
-          print(os.environ['PATH'])
+      - run: echo "${USERNAME}"
+      - run: echo "${PASSWORD:0:1} ${PASSWORD#?}" 
