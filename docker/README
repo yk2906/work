@@ -1,3 +1,0 @@
-# Container Registryにdocker imageをpushする際は下記のコマンドで行う。
-# 予めGHCR_USERの環境変数を定義しておく
-echo PATトークン | docker login ghcr.io -u ${GHCR_USER} --password-stdin
