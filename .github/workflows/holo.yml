@@ -20,4 +20,7 @@ jobs:
   call_holomen_name:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ inputs.event.inputs.env.options }}"
+      - name: hyouji
+        run: |
+          cat /etc/issue
+          echo "${{ inputs.event.inputs.env }}"
