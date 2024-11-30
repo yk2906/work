@@ -3,13 +3,21 @@ name: Hololive Workflow
 on:
   workflow_dispatch:
     inputs:
-      select_holomen:
-        type: string
-        default: Hello
+      env:
+        description: "Select a name for the holomen"
+        type: choice
+        default: "ときのそら"
         required: true
-        description: Select a name for the holomen
+        options:
+          - ときのそら
+          - 星街すいせい
+          - さくらみこ
+          - AZKi
+          - 天音かなた
+          - 雪花ラミィ
+
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ inputs.select_holomen }}"
+      - run: echo "${{ inputs.select_holomen.env }}"
