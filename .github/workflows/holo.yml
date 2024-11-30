@@ -17,7 +17,7 @@ on:
           - 雪花ラミィ
 
 jobs:
-  run:
+  call_holomen_name:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ inputs.select_holomen.env }}"
+      - run: echo "${{ inputs.event.inputs.env }}"
