@@ -20,4 +20,4 @@ jobs:
   call_holomen_name:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ inputs.event.inputs.env }}"
+      - run: echo "${{ inputs.event.inputs.env.options }}"
