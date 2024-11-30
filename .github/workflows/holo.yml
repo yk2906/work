@@ -23,4 +23,4 @@ jobs:
       - name: hyouji
         run: |
           cat /etc/issue
-          echo "${{ inputs.event.inputs.env }}"
+          echo "${{ inputs.env }}"
